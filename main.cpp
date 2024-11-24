@@ -5,41 +5,41 @@
 #include "Person.h"
 #include "VisaInfo.h"
 
-// ¸Ş´º Ãâ·Â ÇÔ¼ö
+// ë©”ë‰´ ì¶œë ¥ í•¨ìˆ˜
 void displayMenu() {
-    std::cout << "1. ºñÀÚ Á¤º¸ µî·Ï\n";
-    std::cout << "2. µî·ÏµÈ Á¤º¸ È®ÀÎ\n";
-    std::cout << "3. Á¾·á\n";
-    std::cout << "¿øÇÏ´Â ¹øÈ£¸¦ ¼±ÅÃÇÏ¼¼¿ä: ";
+    std::cout << "1. ë¹„ì ì •ë³´ ë“±ë¡\n";
+    std::cout << "2. ë“±ë¡ëœ ì •ë³´ í™•ì¸\n";
+    std::cout << "3. ì¢…ë£Œ\n";
+    std::cout << "ì›í•˜ëŠ” ë²ˆí˜¸ë¥¼ ì„ íƒí•˜ì„¸ìš”: ";
 }
 
-// À¯È¿ÇÑ ¼ºº° ÀÔ·Â °Ë»ç ÇÔ¼ö
+// ì„±ë³„ ì…ë ¥ ê²€ì‚¬ í•¨ìˆ˜
 char inputGender() {
     char gender;
     while (true) {
-        std::cout << "¼ºº°À» ÀÔ·ÂÇÏ¼¼¿ä (m: ³²¼º, f: ¿©¼º): ";
+        std::cout << "ì„±ë³„ì„ ì…ë ¥í•˜ì„¸ìš” (m: ë‚¨ì„±, f: ì—¬ì„±): ";
         std::cin >> gender;
-        std::cin.ignore();  // ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+        std::cin.ignore();  // ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 
         if (gender == 'm' || gender == 'M' || gender == 'f' || gender == 'F') {
             return gender;
         }
         else {
-            std::cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. 'm'Àº ³²¼º, 'f'´Â ¿©¼ºÀÔ´Ï´Ù.\n";
+            std::cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. 'm'ì€ ë‚¨ì„±, 'f'ëŠ” ì—¬ì„±ì…ë‹ˆë‹¤.\n";
         }
     }
 }
 
-// À¯È¿ÇÑ ¿µ¾î ÀÌ¸§ ÀÔ·Â °Ë»ç ÇÔ¼ö
+// ì˜ì–´ ì´ë¦„ ì…ë ¥ ê²€ì‚¬ í•¨ìˆ˜
 std::string inputName() {
     std::string name;
     while (true) {
-        std::cout << "¿µ¾î ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä (¿µ¹® ¹®ÀÚ¸¸): ";
+        std::cout << "ì˜ì–´ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” (ì˜ë¬¸ ë¬¸ìë§Œ): ";
         std::getline(std::cin, name);
 
         bool isValid = true;
         for (char c : name) {
-            if (!isalpha(c)) {  // ¹®ÀÚ°¡ ¾Æ´Ñ °ÍÀÌ µé¾î¿À¸é
+            if (!isalpha(c)) {  // ë¬¸ìê°€ ì•„ë‹Œ ê²ƒì´ ë“¤ì–´ì˜¤ë©´
                 isValid = false;
                 break;
             }
@@ -49,21 +49,21 @@ std::string inputName() {
             return name;
         }
         else {
-            std::cout << "ÀÌ¸§¿¡´Â ¹®ÀÚ¸¸ ÀÔ·ÂÇÒ ¼ö ÀÖ½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.\n";
+            std::cout << "ì´ë¦„ì—ëŠ” ë¬¸ìë§Œ ì…ë ¥í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.\n";
         }
     }
 }
 
-// À¯È¿ÇÑ ÀüÈ­¹øÈ£ ÀÔ·Â °Ë»ç ÇÔ¼ö
+// ì „í™”ë²ˆí˜¸ ì…ë ¥ ê²€ì‚¬ í•¨ìˆ˜
 std::string inputPhoneNumber() {
     std::string phoneNumber;
     while (true) {
-        std::cout << "ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä (¼ıÀÚ¸¸): ";
+        std::cout << "ì „í™”ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” (ìˆ«ìë§Œ): ";
         std::getline(std::cin, phoneNumber);
 
         bool isValid = true;
         for (char c : phoneNumber) {
-            if (!isdigit(c)) {  // ¼ıÀÚ°¡ ¾Æ´Ñ °ÍÀÌ µé¾î¿À¸é
+            if (!isdigit(c)) {  // ìˆ«ìê°€ ì•„ë‹Œ ê²ƒì´ ë“¤ì–´ì˜¤ë©´
                 isValid = false;
                 break;
             }
@@ -73,29 +73,29 @@ std::string inputPhoneNumber() {
             return phoneNumber;
         }
         else {
-            std::cout << "ÀüÈ­¹øÈ£¿¡´Â ¼ıÀÚ¸¸ ÀÔ·ÂÇÒ ¼ö ÀÖ½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.\n";
+            std::cout << "ì „í™”ë²ˆí˜¸ì—ëŠ” ìˆ«ìë§Œ ì…ë ¥í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.\n";
         }
     }
 }
 
-// À¯È¿ÇÑ ³ªÀÌ ÀÔ·Â °Ë»ç ÇÔ¼ö
+// ë‚˜ì´ ì…ë ¥ ê²€ì‚¬ í•¨ìˆ˜
 int inputAge() {
     int age;
     while (true) {
-        std::cout << "³ªÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä (¼ıÀÚ¸¸): ";
+        std::cout << "ë‚˜ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš” (ìˆ«ìë§Œ): ";
         std::cin >> age;
-        std::cin.ignore();  // ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+        std::cin.ignore();  // ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 
         if (age > 0) {
             return age;
         }
         else {
-            std::cout << "À¯È¿ÇÑ ³ªÀÌ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.\n";
+            std::cout << "ìœ íš¨í•œ ë‚˜ì´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.\n";
         }
     }
 }
 
-// ºñÀÚ Á¤º¸ ÀÔ·Â ÇÔ¼ö (°áÁ¦ ¿©ºÎ È®ÀÎ Ãß°¡)
+// ë¹„ì ì •ë³´ ì…ë ¥ í•¨ìˆ˜ 
 void inputVisaInfo(std::vector<Person*>& people) {
     std::string name, phoneNumber;
     int age;
@@ -107,34 +107,34 @@ void inputVisaInfo(std::vector<Person*>& people) {
     gender = inputGender();
     age = inputAge();
 
-    // ºñÀÚ °áÁ¦ ¿©ºÎ ÀÔ·Â ¹Ş±â (y/n ÀÌ¿ÜÀÇ °ªÀº ´Ù½Ã ÀÔ·Â¹Ş±â)
+    // ë¹„ì ê²°ì œ ì—¬ë¶€ ì…ë ¥ ë°›ê¸° (yë‚˜ n ì´ì™¸ì˜ ê°’ì€ ë‹¤ì‹œ ì…ë ¥ë°›ê¸°)
     while (true) {
-        std::cout << "ºñÀÚ ºñ¿ëÀÌ °áÁ¦µÇ¾ú³ª¿ä? (y/n): ";
+        std::cout << "ë¹„ì ë¹„ìš©ì´ ê²°ì œë˜ì—ˆë‚˜ìš”? (y/n): ";
         std::cin >> paymentChoice;
-        std::cin.ignore();  // ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+        std::cin.ignore();  // ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 
         if (paymentChoice == 'y' || paymentChoice == 'Y') {
             paymentStatus = true;
             break;
         }
         else if (paymentChoice == 'n' || paymentChoice == 'N') {
-            std::cout << "ºñÀÚ ºñ¿ëÀÌ °áÁ¦µÇÁö ¾Ê¾Ò½À´Ï´Ù. °áÁ¦ ÈÄ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
-            return; // °áÁ¦ ¾È ÇßÀ¸¸é ÀÔ·Â Á¾·á
+            std::cout << "ë¹„ì ë¹„ìš©ì´ ê²°ì œë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ê²°ì œ í›„ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n";
+            return; // ê²°ì œ ì•ˆ í–ˆìœ¼ë©´ ì…ë ¥ ì¢…ë£Œ
         }
         else {
-            std::cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. 'y'´Â ¿¹, 'n'Àº ¾Æ´Ï¿ÀÀÔ´Ï´Ù.\n";
+            std::cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. 'y'ëŠ” ì˜ˆ, 'n'ì€ ì•„ë‹ˆì˜¤ì…ë‹ˆë‹¤.\n";
         }
     }
 
-    // VisaInfo °´Ã¼ »ı¼º ÈÄ people º¤ÅÍ¿¡ Ãß°¡
+    
     Person* person = new VisaInfo(name, phoneNumber, gender, age, paymentStatus);
     people.push_back(person);
 }
 
-// µî·ÏµÈ ºñÀÚ Á¤º¸ Ãâ·Â ÇÔ¼ö
+// ë“±ë¡ëœ ë¹„ì ì •ë³´ ì¶œë ¥ í•¨ìˆ˜
 void checkRegistrationStatus(const std::vector<Person*>& people) {
     if (people.empty()) {
-        std::cout << "µî·ÏµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù.\n";
+        std::cout << "ë“±ë¡ëœ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.\n";
     }
     else {
         for (const auto& person : people) {
@@ -143,7 +143,7 @@ void checkRegistrationStatus(const std::vector<Person*>& people) {
     }
 }
 
-// ¸ŞÀÎ ÇÔ¼ö
+
 int main() {
     std::vector<Person*> people;
     int choice;
@@ -151,24 +151,24 @@ int main() {
     while (true) {
         displayMenu();
         std::cin >> choice;
-        std::cin.ignore();  // ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+        std::cin.ignore();  // ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 
         switch (choice) {
         case 1:
-            inputVisaInfo(people);  // ºñÀÚ Á¤º¸ ÀÔ·Â
+            inputVisaInfo(people);  // ë¹„ì ì •ë³´ ì…ë ¥
             break;
         case 2:
-            checkRegistrationStatus(people);  // µî·ÏµÈ Á¤º¸ È®ÀÎ
+            checkRegistrationStatus(people);  // ë“±ë¡ëœ ì •ë³´ í™•ì¸
             break;
         case 3:
-            std::cout << "ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù. ¾È³çÈ÷ °¡¼¼¿ä!\n";
-            // µ¿Àû ¸Ş¸ğ¸® ÇØÁ¦
+            std::cout << "í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤. ì•ˆë…•íˆ ê°€ì„¸ìš”!\n";
+            // ë™ì  ë©”ëª¨ë¦¬ í•´ì œ
             for (auto person : people) {
                 delete person;
             }
             return 0;
         default:
-            std::cout << "Àß¸øµÈ ¿É¼ÇÀÔ´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.\n";
+            std::cout << "ì˜ëª»ëœ ì˜µì…˜ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.\n";
         }
     }
 
